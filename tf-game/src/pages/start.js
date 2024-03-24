@@ -50,7 +50,7 @@ function Start() {
   };
 
   const handleSelectClick = () => {
-    console.log('Navigating with state:', { selectedAvatar, username });
+  
     navigate('/mode', { state: { selectedAvatar, username } });
   };
   return (

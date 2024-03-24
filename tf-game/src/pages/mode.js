@@ -7,11 +7,11 @@ function Mode() {
   const { selectedAvatar, username } = location.state;
 
   const handleSinglePlayerClick = () => {
-    navigate('/mode/singleplayer');
+    navigate('/singleplayer', { state: { selectedAvatar, username } });
   };
-
+  
   const handleMultiplayerClick = () => {
-    navigate('/mode/multiplayer');
+    navigate('/multiplayer', { state: { selectedAvatar, username } });
   };
 
   return (
