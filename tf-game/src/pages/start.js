@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const UsernameInput = styled.input`
 function Start() {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [username, setUsername] = useState('');
+  const navigate = useNavigate();
 
   const avatars = [
     'https://api.dicebear.com/8.x/adventurer/svg?seed=Molly',
@@ -47,6 +49,10 @@ function Start() {
     setUsername(event.target.value);
   };
 
+  const handleSelectClick = () => {
+    console.log('Navigating with state:', { selectedAvatar, username });
+    navigate('/mode', { state: { selectedAvatar, username } });
+  };
   return (
     <Container>
       <h1>Select an avatar:</h1>
@@ -64,6 +70,7 @@ function Start() {
       {selectedAvatar && <h2>You selected:</h2>}
       {selectedAvatar && <img src={selectedAvatar} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />}
       <UsernameInput type="text" value={username} onChange={handleUsernameChange} placeholder="Enter username" />
+      <button onClick={handleSelectClick}>Select</button>
     </Container>
   );
 }
